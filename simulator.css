@@ -1,0 +1,209 @@
+body.spacesimulator{
+    --uiBackgroundColor: rgba(255, 255, 255, 0.05);
+    --uiBackgroundColorHover: rgba(109, 167, 255, 0.17);
+    --uiActiveColorHover: rgba(34, 122, 255, 0.3);
+    --uiFontColor: rgba(255, 255, 255, 0.6);
+    --uiActiveFontColor: rgba(255, 255, 255, 0.85);
+    --uiBorderColor: rgba(255, 255, 255, 0.15);
+    margin: 0;
+    color: var(--uiFontColor);
+    font-family: sans-serif;
+    letter-spacing: 2px;
+}
+
+.overridecoloremoji {
+    text-shadow: 0 0 0 var(--uiFontColor); 
+    color: rgba(0, 0, 0, 0);
+}
+
+body.spacesimulator canvas#canvas{
+    z-index: -1;
+    position: fixed;
+    clear: none;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    overflow: clip;
+}
+
+body.spacesimulator div.uiroot{
+    height: 100vh;
+    width: 100vw;
+    overflow: clip;
+}
+
+body.spacesimulator div {
+    display: flex;
+}
+
+body.spacesimulator > div {
+    display: flex;
+    flex-direction: column;
+}
+
+body.spacesimulator  div.flexhorizontal.right.rightsideflexend {
+    justify-content: flex-end;
+}
+
+body.spacesimulator  div.topheader {
+    display: flex;
+    flex-direction: column;
+    /* background-color: var(--uiBackgroundColor); */
+    height: 5vh;
+}
+
+body.spacesimulator div.flexhorizontal {
+    height: 95vh;
+}
+
+body.spacesimulator div.flexhorizontal.left {
+    width: 7%;
+    /* background-color: rgba(0, 255, 255, 0.2); */
+}
+
+body.spacesimulator div.flexhorizontal.center {
+    width: 86%;
+}
+
+body.spacesimulator div.flexhorizontal.right {
+    width: 7%;
+    /* background-color: rgba(0, 255, 255, 0.2); */
+}
+
+body.spacesimulator div.doubleinputcontainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+div.inputbox {
+    user-select: none;
+}
+
+body.spacesimulator div.doubleinputcontainer div.inputbox {
+    transition: 1s;
+    /* background-color: red; */
+    display: inline;
+    width: 100%;
+    height: 5.5vh;
+    max-height: 80px;
+    text-align: center;
+    font-size: 5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0px;
+}
+
+@media (min-width: 800px){
+    body.spacesimulator div.doubleinputcontainer div.inputbox { 
+        width: 50%;
+        height: 10vh;
+    }
+}
+
+body.spacesimulator div.flexverticaltoolbar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--uiBackgroundColor);
+
+    border-style: solid;
+    border-color: var(--uiBorderColor);
+    border-width: 1px;
+    overflow: hidden;
+    margin-top: 10vh;
+}
+
+body.spacesimulator div.flexverticaltoolbar.left{
+    border-top-right-radius: 20px;
+    position: relative;
+    right: 2px;
+    top: 2px;
+    /* border-bottom-right-radius: 20px; */
+}
+
+body.spacesimulator div.flexverticaltoolbar.right{
+    border-top-left-radius: 20px;
+    position: relative;
+    left: 2px;
+    top: 2px;
+    /* border-bottom-right-radius: 20px; */
+}
+
+body.spacesimulator div.flexhorizontaltoolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+    background-color: var(--uiBackgroundColor);
+    font-size: 2.5vmin;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--uiBorderColor);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    padding: 0 30px;
+    position: relative;
+    bottom: 2px;
+}
+
+body.spacesimulator div.doubleinputcontainer div.inputbox:hover {
+    transition: 1s;
+    background-color: var(--uiBackgroundColorHover);
+}
+
+body.spacesimulator div.doubleinputcontainer div.inputbox.active {
+    transition: 0.4s;
+    background-color: var(--uiActiveColorHover);
+    color: var(--uiActiveFontColor);
+}
+
+body.spacesimulator div.singleinputcontainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 10%;
+}
+
+body.spacesimulator div.singleinputcontainer .inputbox.smallersize {
+    font-size: 2.5vmin;
+}
+
+body.spacesimulator div.singleinputcontainer div.inputbox {
+    transition: 1s;
+    /* background-color: purple; */
+    display: inline;
+    width: 100%;
+    min-width: 60px;
+    height: 100%;
+    text-align: center;
+    font-size: 3.5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--uiBackgroundColor);
+}
+
+body.spacesimulator div.singleinputcontainer div.inputbox.valuebox {
+    transition: 1s;
+    font-size: 2vmin;
+}
+
+span.forcevector {
+    margin-left: 0.2em;
+}
+
+span.forcevector span.arrow {
+    vertical-align: 0.5em;
+    margin-left: -0.7em;
+}

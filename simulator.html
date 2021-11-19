@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="spherical.physics.js"></script>
+        <script src="user.input.js"></script>
+        <script src="canvas.drawing.js"></script>
+        <script src="main.simulator.js"></script>
+        <link rel="stylesheet" href="simulator.css">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body class="spacesimulator">
+        <canvas id="canvas"></canvas>
+        <div class="flexvertical uiroot">
+            <div class="topheader">
+                <div class="flexhorizontal flexhorizontaltoolbar">
+                    <span class="topheaderstats">
+                        OuterSpaced
+                    </span>
+                    <span>|</span>
+                    <span class="topheaderstats" id="totalspheres">
+                    </span>
+                    <span>|</span>
+                    <span class="topheaderstats" id="totalmass">
+                    </span>
+                    <span>|</span>
+                    <span class="topheaderstats" id="fps">
+                    </span>
+                </div>
+            </div>
+            <div class="nottopheader">
+                <div class="flexhorizontal left">
+                    <div class="flexverticaltoolbar left">
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Tools</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox toolmodeoption" title="Add planet with momentum" id="toollinear">
+                                <span>&rarr;</span>
+                            </div>
+                            <div class="inputbox toolmodeoption" title="Add planet to orbit center of mass" id="toolorbit">
+                                <span>&orarr;</span>
+                            </div>
+                            <div class="inputbox">
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Zoom</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox valuebox" id="zoomvalue">
+                                <span>1.0</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" id="zoomout">
+                                <span>&ndash;</span>
+                            </div>
+                            <div class="inputbox" id="zoomin">
+                                <span>+</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Move</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" id="moveleft">
+                                <!-- left -->
+                                <span>&#8678;</span>
+                            </div>
+                            <div class="inputbox" id="moveright">
+                                <!-- right -->
+                                <span>&#8680;</span>
+                            </div>
+                            <div class="inputbox" id="moveup">
+                                <!-- up -->
+                                <span>&#8679;</span>
+                            </div>
+                            <div class="inputbox" id="movedown">
+                                <!-- down -->
+                                <span>&#8681;</span>
+                            </div>
+                            <div class="inputbox">
+                            </div>
+                            <div class="inputbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flexhorizontal center" id="divwhichdoesnotobstructviewtocanvas">
+                    <!-- canvas view -->
+                </div>
+                <div class="flexhorizontal right rightsideflexend">
+                    <div class="flexverticaltoolbar right">
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>State</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" onclick="State.goBackInHistory(event)">
+                                <span>&#8678;</span>
+                            </div>
+                            <div class="inputbox" onclick="State.goForwardInHistory(event)">
+                                <span>&#8680;</span>
+                            </div>
+                            <div class="inputbox" onclick="State.reloadCurrent(event)">
+                                <span>&orarr;</span>
+                            </div>
+                            <div class="inputbox" onclick="State.clearState(event)">
+                                <span>x</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Time</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox valuebox" id="timevalue">
+                                <span>--</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" id="timedown">
+                                <span>&ndash;</span>
+                            </div>
+                            <div class="inputbox" id="timeup">
+                                <span>+</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Mass</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox valuebox" id="massvalue">
+                                <span>--</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" id="massdown">
+                                <span>&ndash;</span>
+                            </div>
+                            <div class="inputbox" id="massup">
+                                <span>+</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal singleinputcontainer">
+                            <div class="inputbox">
+                                <span>Show</span>
+                            </div>
+                        </div>
+                        <div class="flexhorizontal doubleinputcontainer">
+                            <div class="inputbox" title="Show net force vectors" id="showvectorforce">
+                                <span class="forcevector">F<span class="arrow">&rarr;</span>
+                            </div>
+                            <div class="inputbox" title="Show velocity vectors" id="showvectorvelocity">
+                                <span class="forcevector">V<span class="arrow">&rarr;</span>
+                            </div>
+                            <div class="inputbox" title="Show paths taken by objects" id="showtraces">
+                                <span>&#x2299;</span>
+                            </div>
+                            <div class="inputbox" title="Show area swept out by orbits" id="showarea">
+                                <span>&#x2295;</span>
+                            </div>
+                            <div class="inputbox">
+                            </div>
+                            <div class="inputbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
